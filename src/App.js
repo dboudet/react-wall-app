@@ -1,12 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.scss"
+import Header from "./components/Header"
+import Main from "./components/Main"
 
 export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Header.</p>
-      </header>
+      <Header />
+      <Main />
     </div>
   )
 }
