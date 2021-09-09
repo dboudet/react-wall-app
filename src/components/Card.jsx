@@ -4,15 +4,35 @@ export default function Card() {
   return (
     <div
       style={{
-        width: 340,
-        height: 340,
+        width: 360,
+        height: 360,
         backgroundImage: `url(${cardBubble})`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
+        marginBottom: "24px",
+        position: "relative",
       }}
     >
-      <div style={{ padding: "27px 33px", height:224, overflow:"hidden", }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et odio deserunt at sunt, dolorum quaerat aut corrupti harum quisquam corporis commodi. Modi pariatur nobis esse tempora, vel dolore quos! Similique. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus eligendi ut accusantium autem blanditiis sapiente at, molestiae dicta harum enim cumque, ea error. Vero labore vitae magnam odio, veritatis voluptatem.
+      <div
+        style={{
+          fontSize: 20,
+          padding: "28px 35px",
+          height: 238,
+          overflow: "hidden",
+          textAlign: "center",
+        }}
+      >
+        Bacon ipsum dolor amet rump dolore turducken, anim eiusmod qui strip
+        steak nostrud drumstick reprehenderit meatball chuck. Aute strip steak
+        consectetur, beef magna ham hock kevin porchetta beef ribs incididunt
+        capicola pig pastrami brisket ex. Cillum salami landjaeger, sunt pork
+        belly shank shankle sint occaecat enim. Et chislic occaecat picanha.
+      </div>
+      <div
+        style={{ position: "absolute", bottom: 40, right: 50, fontSize: 20 }}
+      >
+        {" "}
+        -Daniel
       </div>
     </div>
   )
