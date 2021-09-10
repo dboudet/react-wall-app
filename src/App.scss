@@ -1,1 +1,44 @@
 @import "~bootstrap/scss/bootstrap";
+
+@mixin flex-Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+nav {
+    background-color: var(--bs-indigo)
+}
+.main {
+    @include flex-Container;
+    min-height: 70vh;
+    font-size: 20;
+}
+
+.db-form {
+    @include flex-Container;
+    width: 400px;
+    max-width: 95vw;
+    .mb-3 {
+        width: 100%;
+    }
+    .form-control:focus {
+        border-color: var(--bs-purple);
+        box-shadow: 0 0 0 0.25rem rgb(121 22 113 / 30%);
+    }
+    button {
+        background-color: var(--bs-indigo);
+        border-color: var(--bs-indigo);
+        font-weight: 700;
+        width: 140px;
+        height: 50px
+    }
+    button:hover, button:focus {
+        background-color: var(--bs-purple);
+        border-color: var(--bs-indigo);
+        box-shadow: none;
+    }
+    #post-message-button {
+        width: 212px;
+    }
+}

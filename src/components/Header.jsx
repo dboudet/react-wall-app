@@ -1,20 +1,35 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
- 
-export default function Header() {
+import { useContext } from "react"
+import { Container, Nav, Navbar } from "react-bootstrap"
+import { UserContext } from "../App"
 
-    return(
-        <Navbar bg="primary" variant="dark">
-        <Container style={{justifyContent:"space-between"}}>
-          <Navbar.Brand href="/">
-          <i class="bi bi-chat-quote"></i>
+export default function Header() {
+  const { isSignedIn } = useContext(UserContext)
+
+  const handleSignOut = () => {
+    localStorage.setItem('userLoggedIn', false)
+  }
+
+  return (
+    <Navbar variant="dark">
+      <Container style={{ justifyContent: "space-between" }}>
+        <Navbar.Brand href="/">
+          <i className="bi bi-chat-quote"></i>
           &nbsp;React Wall App
-          </Navbar.Brand>
-          <Nav>
+        </Navbar.Brand>
+
+        {!isSignedIn && (
+          <Nav className="guestNav">
             <Nav.Link href="/sign-in">Sign In</Nav.Link>
-            <Nav.Link href="/sign-out">Sign Out</Nav.Link>
             <Nav.Link href="/create-account">Create Account</Nav.Link>
           </Nav>
-        </Container>
-      </Navbar>
-        )
+        )}
+        {isSignedIn && (
+          <Nav className="userNav">
+            <Nav.Link href="/post-message">Post Message</Nav.Link>
+            <Nav.Link href="/" onClick={handleSignOut}>Sign Out</Nav.Link>
+          </Nav>
+        )}
+      </Container>
+    </Navbar>
+  )
 }

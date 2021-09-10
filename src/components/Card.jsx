@@ -22,11 +22,7 @@ export default function Card() {
           textAlign: "center",
         }}
       >
-        Bacon ipsum dolor amet rump dolore turducken, anim eiusmod qui strip
-        steak nostrud drumstick reprehenderit meatball chuck. Aute strip steak
-        consectetur, beef magna ham hock kevin porchetta beef ribs incididunt
-        capicola pig pastrami brisket ex. Cillum salami landjaeger, sunt pork
-        belly shank shankle sint occaecat enim. Et chislic occaecat picanha.
+        Bacon ipsum dolor amet rump dolore turducken, anim eiusmod qui strip steak nostrud drumstick reprehenderit meatball chuck. Aute strip steak consectetur, beef magna ham hock kevin porchetta beef ribs incididunt ...
       </div>
       <div
         style={{ position: "absolute", bottom: 40, right: 50, fontSize: 20 }}

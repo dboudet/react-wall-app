@@ -9,7 +9,7 @@ export default function Wall() {
         flexWrap: "wrap",
         justifyContent: "space-around",
         justifyItems: "flex-start",
-        paddingTop:"40px",
+        paddingTop: "40px",
       }}
     >
       <Card />

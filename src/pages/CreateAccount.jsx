@@ -2,10 +2,10 @@ import { useContext } from "react"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
 import { UserContext } from "../App"
 
-export default function SignIn() {
+export default function CreateAccount() {
   const { isSignedIn, setIsSignedIn } = useContext(UserContext)
 
-  const handleSignIn = (event) => {
+  const handleCreateAccount = (event) => {
     event.preventDefault()
     setIsSignedIn(true)
     localStorage.setItem('userLoggedIn', true)
@@ -15,8 +15,15 @@ export default function SignIn() {
       <Form
         className="db-form"
         id="signin-form"
-        onSubmit={handleSignIn}
+        onSubmit={handleCreateAccount}
       >
+        <FloatingLabel className="mb-3" controlId="formBasicText" label="Display Name">
+          <Form.Control
+            type="text"
+            placeholder="Display Name"
+          />
+        </FloatingLabel>
+
         <FloatingLabel className="mb-3" controlId="formBasicEmail" label="Email Address">
           <Form.Control
             type="email"
