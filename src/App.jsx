@@ -15,8 +15,8 @@ export default function App() {
   const [isSignedIn, setIsSignedIn] = useState()
 
   useEffect(() => {
-    setIsSignedIn(localStorage.getItem('userLoggedIn'))
-  },[isSignedIn])
+      setIsSignedIn(sessionStorage.getItem("userLoggedIn"))
+  })
 
   return (
     <div className="App">

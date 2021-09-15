@@ -6,7 +6,7 @@ export default function Header() {
   const { isSignedIn } = useContext(UserContext)
 
   const handleSignOut = () => {
-    localStorage.setItem('userLoggedIn', false)
+    sessionStorage.setItem('userLoggedIn', false)
   }
 
   return (
@@ -17,16 +17,16 @@ export default function Header() {
           &nbsp;React Wall App
         </Navbar.Brand>
 
-        {!isSignedIn && (
-          <Nav className="guestNav">
-            <Nav.Link href="/sign-in">Sign In</Nav.Link>
-            <Nav.Link href="/create-account">Create Account</Nav.Link>
-          </Nav>
-        )}
-        {isSignedIn && (
+        {isSignedIn === "true" && (
           <Nav className="userNav">
             <Nav.Link href="/post-message">Post Message</Nav.Link>
             <Nav.Link href="/" onClick={handleSignOut}>Sign Out</Nav.Link>
+          </Nav>
+        )}
+        {isSignedIn !== "true" && (
+          <Nav className="guestNav">
+            <Nav.Link href="/sign-in">Sign In</Nav.Link>
+            <Nav.Link href="/create-account">Create Account</Nav.Link>
           </Nav>
         )}
       </Container>
