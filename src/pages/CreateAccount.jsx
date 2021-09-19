@@ -1,10 +1,14 @@
 import { useContext, useState } from "react"
+import { useHistory } from "react-router-dom"
+import bcrypt from "bcryptjs"
+import { mySalt } from "../config"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
 import { UserContext } from "../App"
 
 export default function CreateAccount() {
   const { isSignedIn, setIsSignedIn } = useContext(UserContext)
   const [user, setUser] = useState({})
+  const history = useHistory()
 
   const handleFormData = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value })
@@ -24,7 +28,7 @@ export default function CreateAccount() {
         setIsSignedIn(true)
         sessionStorage.setItem("userLoggedIn", "true")
       })
-      .then(() => window.location.reload(false))
+      .then(() => history.push("/"))
       .catch((err) => alert(err))
   }
 

@@ -1,6 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 
-@mixin flex-Container {
+@mixin flex-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,13 +10,13 @@ nav {
     background-color: var(--bs-indigo)
 }
 .main {
-    @include flex-Container;
+    @include flex-container;
     min-height: 70vh;
     font-size: 20;
 }
 
 .db-form {
-    @include flex-Container;
+    @include flex-container;
     width: 400px;
     max-width: 95vw;
     .mb-3 {
