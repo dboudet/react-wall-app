@@ -27,6 +27,7 @@ export default function CreateAccount() {
       .then(() => {
         setIsSignedIn(true)
         sessionStorage.setItem("userLoggedIn", "true")
+        sessionStorage.setIem("displayName", user.displayName)
       })
       .then(() => history.push("/"))
       .catch((err) => alert(err))
@@ -43,7 +44,9 @@ export default function CreateAccount() {
           type="text"
           placeholder="Display Name"
           name="displayName"
-          onChange={handleFormData}
+          onChange={(event) => {
+            setUser({ ...user, displayName: event.target.value })
+          }}
         />
       </FloatingLabel>
 
@@ -56,7 +59,13 @@ export default function CreateAccount() {
           type="email"
           placeholder="Email Address"
           name="email"
-          onChange={handleFormData}
+          onChange={(event) => {
+            let cleanedEmail = String(event.target.value).toLowerCase()
+            setUser({
+              ...user,
+              email: cleanedEmail,
+            })
+          }}
         />
       </FloatingLabel>
 
@@ -69,7 +78,10 @@ export default function CreateAccount() {
           type="password"
           placeholder="Password"
           name="password"
-          onChange={handleFormData}
+          onChange={(event) => {
+            let hashedPassword = bcrypt.hashSync(event.target.value, mySalt)
+            setUser({ ...user, password: hashedPassword })
+          }}
         />
       </FloatingLabel>
       <Button variant="primary" type="submit">

@@ -5,7 +5,6 @@ import { Button, FloatingLabel, Form } from "react-bootstrap"
 
 export default function PostMessage() {
   const { isSignedIn } = useContext(UserContext)
-
   const history = useHistory()
 
   const handlePostMessage = (event) => {
@@ -25,7 +24,7 @@ export default function PostMessage() {
         controlId="formBasicText"
         label="Display Name"
       >
-        <Form.Control type="text" placeholder="*Pre-populate with User Name" />
+        <Form.Control type="text" placeholder="*Pre-populate with User Name?" />
       </FloatingLabel>
 
       <FloatingLabel

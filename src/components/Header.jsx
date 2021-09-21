@@ -6,7 +6,8 @@ export default function Header() {
   const { isSignedIn } = useContext(UserContext)
 
   const handleSignOut = () => {
-    sessionStorage.setItem('userLoggedIn', false)
+    sessionStorage.setItem("userLoggedIn", false)
+    sessionStorage.removeItem("displayName")
   }
 
   return (
@@ -20,7 +21,9 @@ export default function Header() {
         {isSignedIn === "true" && (
           <Nav className="userNav">
             <Nav.Link href="/post-message">Post Message</Nav.Link>
-            <Nav.Link href="/" onClick={handleSignOut}>Sign Out</Nav.Link>
+            <Nav.Link href="/" onClick={handleSignOut}>
+              Sign Out
+            </Nav.Link>
           </Nav>
         )}
         {isSignedIn !== "true" && (

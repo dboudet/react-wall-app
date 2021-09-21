@@ -1,5 +1,7 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../App"
+import bcrypt from "bcryptjs"
+import { mySalt } from "../config"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 
@@ -7,10 +9,6 @@ export default function SignIn() {
   const [user, setUser] = useState({})
   const { isSignedIn, setIsSignedIn } = useContext(UserContext)
   const history = useHistory()
-
-  const handleFormData = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.value })
-  }
 
   const handleSignIn = (event) => {
     event.preventDefault()
@@ -21,16 +19,21 @@ export default function SignIn() {
       },
       body: JSON.stringify(user),
     })
-      .then((response) =>
-        response.status === 200
-          ? response.json()
-          : alert("Authentication error")
-      )
-      .then((data) => {
+      .then((response) => {
+        if (response.status === 200) {
+          response.json()
+        } else {
+          return alert(
+            "Authentication failed: User not found or incorrect password."
+          )
+        }
+      })
+      .then(() => {
         setIsSignedIn(true)
         sessionStorage.setItem("userLoggedIn", "true")
         history.push("/post-message")
         alert("You are now logged in and may post a new message")
+        return
       })
       .catch((err) => console.error(err))
   }
@@ -46,7 +49,13 @@ export default function SignIn() {
           type="email"
           name="email"
           placeholder="Email Address"
-          onChange={handleFormData}
+          onChange={(event) => {
+            let cleanedEmail = String(event.target.value).toLowerCase()
+            setUser({
+              ...user,
+              email: cleanedEmail,
+            })
+          }}
         />
       </FloatingLabel>
 
@@ -59,7 +68,10 @@ export default function SignIn() {
           type="password"
           name="password"
           placeholder="Password"
-          onChange={handleFormData}
+          onChange={(event) => {
+            let hashedPassword = bcrypt.hashSync(event.target.value, mySalt)
+            setUser({ ...user, password: hashedPassword })
+          }}
         />
       </FloatingLabel>
       <Button variant="primary" type="submit">
