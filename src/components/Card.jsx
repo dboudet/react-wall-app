@@ -1,6 +1,6 @@
 import cardBubble from "../assets/chat-left.svg"
 
-export default function Card() {
+export default function Card({ message }) {
   return (
     <div
       style={{
@@ -20,15 +20,15 @@ export default function Card() {
           height: 238,
           overflow: "hidden",
           textAlign: "center",
+          fontStyle: "italic",
         }}
       >
-        Bacon ipsum dolor amet rump dolore turducken, anim eiusmod qui strip steak nostrud drumstick reprehenderit meatball chuck. Aute strip steak consectetur, beef magna ham hock kevin porchetta beef ribs incididunt ...
+        {message.messageBody}
       </div>
       <div
         style={{ position: "absolute", bottom: 40, right: 50, fontSize: 20 }}
       >
-        {" "}
-        -Daniel
+        &ndash;&nbsp;{message.messageAuthor}
       </div>
     </div>
   )

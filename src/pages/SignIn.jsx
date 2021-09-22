@@ -19,18 +19,17 @@ export default function SignIn() {
       },
       body: JSON.stringify(user),
     })
-      .then((response) => {
-        if (response.status === 200) {
-          response.json()
-        } else {
-          return alert(
-            "Authentication failed: User not found or incorrect password."
-          )
-        }
-      })
-      .then(() => {
+      .then((response) =>
+        response.status === 200
+          ? response.json()
+          : alert(
+              "Authentication failed: User not found or incorrect password."
+            )
+      )
+      .then((data) => {
         setIsSignedIn(true)
         sessionStorage.setItem("userLoggedIn", "true")
+        sessionStorage.setItem("displayName", data.displayName)
         history.push("/post-message")
         alert("You are now logged in and may post a new message")
         return

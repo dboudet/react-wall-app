@@ -10,10 +10,6 @@ export default function CreateAccount() {
   const [user, setUser] = useState({})
   const history = useHistory()
 
-  const handleFormData = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.value })
-  }
-
   const handleCreateAccount = (event) => {
     event.preventDefault()
     fetch("http://localhost:5000/create-user", {
@@ -23,13 +19,20 @@ export default function CreateAccount() {
       },
       body: JSON.stringify(user),
     })
-      .then((response) => console.log(response))
-      .then(() => {
+      .then((response) =>
+        response.status === 201
+          ? response.json()
+          : alert(
+              "Authentication failed: User not found or incorrect password."
+            )
+      )
+      .then((data) => {
+        console.log(data)
         setIsSignedIn(true)
         sessionStorage.setItem("userLoggedIn", "true")
-        sessionStorage.setIem("displayName", user.displayName)
+        sessionStorage.setItem("displayName", data.displayName)
       })
-      .then(() => history.push("/"))
+      .then(() => history.push("/post-message"))
       .catch((err) => alert(err))
   }
 
@@ -85,7 +88,7 @@ export default function CreateAccount() {
         />
       </FloatingLabel>
       <Button variant="primary" type="submit">
-        Sign In
+        Create Account
       </Button>
     </Form>
   )
