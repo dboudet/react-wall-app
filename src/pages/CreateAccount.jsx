@@ -19,20 +19,24 @@ export default function CreateAccount() {
       },
       body: JSON.stringify(user),
     })
-      .then((response) =>
-        response.status === 201
-          ? response.json()
-          : alert(
-              "Authentication failed: User not found or incorrect password."
-            )
-      )
-      .then((data) => {
-        console.log(data)
-        setIsSignedIn(true)
-        sessionStorage.setItem("userLoggedIn", "true")
-        sessionStorage.setItem("displayName", data.displayName)
+      .then((response) => {
+        if (response.status === 201) {
+          return response.json()
+        } else {
+          alert("Unable to create a new account.")
+        }
       })
-      .then(() => history.push("/post-message"))
+      .then((data) => {
+        if (data) {
+          alert(data.message)
+          // console.log(data)
+          // setIsSignedIn(true)
+          // sessionStorage.setItem("userLoggedIn", "true")
+          // sessionStorage.setItem("displayName", data.displayName)
+          // history.push("/post-message")
+          // alert("Thank you for creating an account! You can now post a message to the wall.")
+        } else return
+      })
       .catch((err) => alert(err))
   }
 

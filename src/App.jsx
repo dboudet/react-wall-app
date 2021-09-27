@@ -8,6 +8,7 @@ import SignIn from "./pages/SignIn"
 import { Container } from "react-bootstrap"
 import PostMessage from "./pages/PostMessage"
 import CreateAccount from "./pages/CreateAccount"
+import VerifyUser from "./pages/VerifyUser"
 
 export const UserContext = createContext(undefined)
 
@@ -27,6 +28,7 @@ export default function App() {
             <Switch>
               <Route exact path="/post-message" component={PostMessage} />Î
               <Route exact path="/create-account" component={CreateAccount} />Î
+              <Route exact path="/verify-email/:confirmationCode" component={VerifyUser} />
               <Route exact path="/sign-in" component={SignIn} />Î
               <Route exact path="/" component={Wall} />
             </Switch>
