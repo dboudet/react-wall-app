@@ -16,11 +16,13 @@ export default function PostMessage() {
   }
 
   const handlePostMessage = (event) => {
+    const token = sessionStorage.getItem("token")
     event.preventDefault()
     fetch("http://localhost:5000/post-message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer: ${token}`,
       },
       body: JSON.stringify(messageContents),
     })

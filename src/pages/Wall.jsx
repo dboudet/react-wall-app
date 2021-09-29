@@ -21,7 +21,7 @@ export default function Wall() {
       }}
     >
       {allMessages?.map((message) => {
-        return <Card message={message} />
+        return <Card key={message._id} message={message} />
       })}
     </Container>
   )

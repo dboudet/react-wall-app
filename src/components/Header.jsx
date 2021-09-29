@@ -6,8 +6,7 @@ export default function Header() {
   const { isSignedIn } = useContext(UserContext)
 
   const handleSignOut = () => {
-    sessionStorage.setItem("userLoggedIn", false)
-    sessionStorage.removeItem("displayName")
+    sessionStorage.clear()
   }
 
   return (

@@ -6,7 +6,7 @@ import { Button, FloatingLabel, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 
 export default function SignIn() {
-  const [user, setUser] = useState({})
+  const [formData, setFormData] = useState({})
   const { isSignedIn, setIsSignedIn } = useContext(UserContext)
   const history = useHistory()
 
@@ -17,7 +17,7 @@ export default function SignIn() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(formData),
     })
       .then((response) => {
         if (response.status === 200) {
@@ -29,13 +29,17 @@ export default function SignIn() {
       })
       .then((data) => {
         if (data) {
-          setIsSignedIn(true)
-          sessionStorage.setItem("token", data.token)
-          sessionStorage.setItem("displayName", data.token.displayName)
-          history.push("/post-message")
-          alert("You are now logged in and may post a new message")
+          const { token, displayName, message } = data
+          sessionStorage.setItem("userLoggedIn", "true",)
+          sessionStorage.setItem("token", token)
+          sessionStorage.setItem("displayName", displayName)
+          alert(message)  
           return
         }
+      })
+      .then(() => {
+        history.push("/post-message")
+        setIsSignedIn(sessionStorage.getItem("userLoggedIn"))
       })
       .catch((err) => console.error(err))
   }
@@ -53,8 +57,8 @@ export default function SignIn() {
           placeholder="Email Address"
           onChange={(event) => {
             let cleanedEmail = String(event.target.value).toLowerCase()
-            setUser({
-              ...user,
+            setFormData({
+              ...formData,
               email: cleanedEmail,
             })
           }}
@@ -72,7 +76,7 @@ export default function SignIn() {
           placeholder="Password"
           onChange={(event) => {
             let hashedPassword = bcrypt.hashSync(event.target.value, mySalt)
-            setUser({ ...user, password: hashedPassword })
+            setFormData({ ...formData, password: hashedPassword })
           }}
         />
       </FloatingLabel>

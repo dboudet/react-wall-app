@@ -26,10 +26,10 @@ export default function App() {
         <Container className="main">
           <Router>
             <Switch>
-              <Route exact path="/post-message" component={PostMessage} />Î
-              <Route exact path="/create-account" component={CreateAccount} />Î
+              <Route exact path="/post-message" component={PostMessage} />
+              <Route exact path="/create-account" component={CreateAccount} />
               <Route exact path="/verify-email/:confirmationCode" component={VerifyUser} />
-              <Route exact path="/sign-in" component={SignIn} />Î
+              <Route exact path="/sign-in" component={SignIn} />
               <Route exact path="/" component={Wall} />
             </Switch>
           </Router>

@@ -1,14 +1,12 @@
-import { useContext, useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useState } from "react"
+// import { useHistory } from "react-router-dom"
 import bcrypt from "bcryptjs"
 import { mySalt } from "../config"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
-import { UserContext } from "../App"
 
 export default function CreateAccount() {
-  const { isSignedIn, setIsSignedIn } = useContext(UserContext)
   const [user, setUser] = useState({})
-  const history = useHistory()
+  // const history = useHistory()
 
   const handleCreateAccount = (event) => {
     event.preventDefault()
