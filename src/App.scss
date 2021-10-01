@@ -1,44 +1,95 @@
 @import "~bootstrap/scss/bootstrap";
+$primary-color: var(--bs-indigo);
+$secondary-color: var(--bs-purple);
 
 @mixin flex-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 nav {
-    background-color: var(--bs-indigo)
+  background-color: $primary-color;
 }
 .main {
-    @include flex-container;
-    min-height: 70vh;
-    font-size: 20;
+  @include flex-container;
+  min-height: 70vh;
+  font-size: 20;
 }
 
 .db-form {
-    @include flex-container;
-    width: 400px;
-    max-width: 95vw;
-    .mb-3 {
-        width: 100%;
-    }
-    .form-control:focus {
-        border-color: var(--bs-purple);
-        box-shadow: 0 0 0 0.25rem rgb(121 22 113 / 30%);
-    }
-    button {
-        background-color: var(--bs-indigo);
-        border-color: var(--bs-indigo);
-        font-weight: 700;
-        width: 160px;
-        height: 50px
-    }
-    button:hover, button:focus {
-        background-color: var(--bs-purple);
-        border-color: var(--bs-indigo);
-        box-shadow: none;
-    }
-    #post-message-button {
-        width: 212px;
-    }
+  @include flex-container;
+  width: 400px;
+  max-width: 95vw;
+  .mb-3 {
+    width: 100%;
+  }
+  .form-control:focus {
+    border-color: $secondary-color;
+    box-shadow: 0 0 0 0.25rem rgb(121 22 113 / 30%);
+  }
+  button {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    font-weight: 700;
+    width: 160px;
+    height: 50px;
+  }
+  button:hover,
+  button:focus {
+    background-color: $secondary-color;
+    border-color: $primary-color;
+    box-shadow: none;
+  }
+  #post-message-button {
+    width: 212px;
+  }
+}
+.wall-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-bottom: 80px;
+}
+.message-bubble {
+  p {
+    height: 121px;
+    overflow: hidden;
+  }
+  position: relative;
+  width: 360px;
+  height: 150px;
+  padding: 14px;
+  margin: 3em 0 1.5em;
+  color: #ffffff;
+  background: $primary-color;
+  background: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    from($primary-color),
+    to($secondary-color)
+  );
+  background: -moz-linear-gradient($primary-color, $secondary-color);
+  background: -o-linear-gradient($primary-color, $secondary-color);
+  background: linear-gradient($primary-color, $secondary-color);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.message-bubble:after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: 50px;
+  border-width: 20px 0 0 20px;
+  border-style: solid;
+  border-color: $secondary-color transparent;
+  display: block;
+  width: 0;
+}
+.message-author {
+  text-align: right;
+  margin-right: 8px;
+  font-style: italic;
 }

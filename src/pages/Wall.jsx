@@ -10,15 +10,7 @@ export default function Wall() {
   }, [])
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        justifyItems: "flex-start",
-        paddingTop: "40px",
-      }}
-    >
+    <div className="wall-container">
       {allMessages?.map((message) => {
         return <Card key={message._id} message={message} />
       })}
