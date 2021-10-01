@@ -1,12 +1,12 @@
 import { useState } from "react"
-// import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import bcrypt from "bcryptjs"
 import { mySalt } from "../config"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
 
 export default function CreateAccount() {
   const [user, setUser] = useState({})
-  // const history = useHistory()
+  const history = useHistory()
 
   const handleCreateAccount = (event) => {
     event.preventDefault()
@@ -31,10 +31,10 @@ export default function CreateAccount() {
           // setIsSignedIn(true)
           // sessionStorage.setItem("userLoggedIn", "true")
           // sessionStorage.setItem("displayName", data.displayName)
-          // history.push("/post-message")
           // alert("Thank you for creating an account! You can now post a message to the wall.")
         } else return
       })
+      .then(() => history.push("/"))
       .catch((err) => alert(err))
   }
 

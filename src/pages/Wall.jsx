@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { Container } from "react-bootstrap"
 import Card from "../components/Card"
 
 export default function Wall() {
@@ -11,7 +10,7 @@ export default function Wall() {
   }, [])
 
   return (
-    <Container
+    <div
       style={{
         display: "flex",
         flexWrap: "wrap",
@@ -23,6 +22,6 @@ export default function Wall() {
       {allMessages?.map((message) => {
         return <Card key={message._id} message={message} />
       })}
-    </Container>
+    </div>
   )
 }
